@@ -52,4 +52,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ⭐ **Star this repo** if you found it helpful!
 
-**Live Demo**: [click here for live demo]([https://your-app.streamlit.app](https://calorie-burn-full-ml-lifecycle-with-interactive-dashboard-nrnw.streamlit.app/))
+**Live Demo**: [[click here for live demo](https://your-app.streamlit.app](https://calorie-burn-full-ml-lifecycle-with-interactive-dashboard-nrnw.streamlit.app/)]([https://your-app.streamlit.app](https://calorie-burn-full-ml-lifecycle-with-interactive-dashboard-nrnw.streamlit.app/))
