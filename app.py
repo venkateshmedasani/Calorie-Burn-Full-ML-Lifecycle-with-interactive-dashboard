@@ -39,6 +39,7 @@ def ensure_models():
 # -------------------------------------------------------------------
 @st.cache_resource
 def load_models():
+    # Extra safety: do not try to load if directory is empty
     if not os.path.exists(MODELS_DIR) or not os.listdir(MODELS_DIR):
         raise FileNotFoundError("Models directory is empty. ensure_models() must run first.")
 
@@ -55,6 +56,8 @@ def load_models():
 
 @st.cache_resource
 def load_scaler():
+    if not os.path.exists(MODELS_DIR) or not os.listdir(MODELS_DIR):
+        raise FileNotFoundError("Models directory is empty. ensure_models() must run first.")
     return joblib.load(os.path.join(MODELS_DIR, "scaler.pkl"))
 
 # -------------------------------------------------------------------
