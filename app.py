@@ -39,19 +39,30 @@ def ensure_models():
 # -------------------------------------------------------------------
 @st.cache_resource
 def load_models():
-    # Extra safety: do not try to load if directory is empty
     if not os.path.exists(MODELS_DIR) or not os.listdir(MODELS_DIR):
         raise FileNotFoundError("Models directory is empty. ensure_models() must run first.")
 
-    models = {
-        "Linear Regression": joblib.load(os.path.join(MODELS_DIR, "linear_regression.pkl")),
-        "Random Forest": joblib.load(os.path.join(MODELS_DIR, "random_forest.pkl")),
-        "Gradient Boosting": joblib.load(os.path.join(MODELS_DIR, "gradient_boosting.pkl")),
-        "XGBoost": joblib.load(os.path.join(MODELS_DIR, "xgboost.pkl")),
-        "LightGBM": joblib.load(os.path.join(MODELS_DIR, "lightgbm.pkl")),
-        "Ridge Regression": joblib.load(os.path.join(MODELS_DIR, "ridge.pkl")),
-        "Lasso Regression": joblib.load(os.path.join(MODELS_DIR, "lasso.pkl")),
-    }
+    models = {}
+    p = os.path.join
+
+    if os.path.exists(p(MODELS_DIR, "linear_regression.pkl")):
+        models["Linear Regression"] = joblib.load(p(MODELS_DIR, "linear_regression.pkl"))
+    if os.path.exists(p(MODELS_DIR, "random_forest.pkl")):
+        models["Random Forest"] = joblib.load(p(MODELS_DIR, "random_forest.pkl"))
+    if os.path.exists(p(MODELS_DIR, "gradient_boosting.pkl")):
+        models["Gradient Boosting"] = joblib.load(p(MODELS_DIR, "gradient_boosting.pkl"))
+    if os.path.exists(p(MODELS_DIR, "xgboost.pkl")):
+        models["XGBoost"] = joblib.load(p(MODELS_DIR, "xgboost.pkl"))
+    if os.path.exists(p(MODELS_DIR, "lightgbm.pkl")):
+        models["LightGBM"] = joblib.load(p(MODELS_DIR, "lightgbm.pkl"))
+    if os.path.exists(p(MODELS_DIR, "ridge.pkl")):
+        models["Ridge Regression"] = joblib.load(p(MODELS_DIR, "ridge.pkl"))
+    if os.path.exists(p(MODELS_DIR, "lasso.pkl")):
+        models["Lasso Regression"] = joblib.load(p(MODELS_DIR, "lasso.pkl"))
+
+    if not models:
+        raise FileNotFoundError("No model .pkl files found in models/ after training.")
+
     return models
 
 @st.cache_resource
