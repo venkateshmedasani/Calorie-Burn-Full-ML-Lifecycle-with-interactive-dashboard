@@ -67,9 +67,11 @@ def load_models():
 
 @st.cache_resource
 def load_scaler():
-    if not os.path.exists(MODELS_DIR) or not os.listdir(MODELS_DIR):
-        raise FileNotFoundError("Models directory is empty. ensure_models() must run first.")
-    return joblib.load(os.path.join(MODELS_DIR, "scaler.pkl"))
+    path = os.path.join(MODELS_DIR, "scaler.pkl")
+    if not os.path.exists(path):
+        raise FileNotFoundError("scaler.pkl not found in models/. Did train_models.py run successfully?")
+    return joblib.load(path)
+
 
 # -------------------------------------------------------------------
 # Sample data for analytics (synthetic, for visualization only)
