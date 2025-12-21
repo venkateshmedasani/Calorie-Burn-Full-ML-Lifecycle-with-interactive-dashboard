@@ -39,12 +39,6 @@ Contributions are welcome! Please:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
-
-**Your Name**
-- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
-- LinkedIn: [Your Profile](https://linkedin.com/in/your-profile)
-- Email: your.email@example.com
 
 ## 🙏 Acknowledgments
 
@@ -53,12 +47,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Streamlit for rapid prototyping
 - scikit-learn for ML infrastructure
 
-## 📞 Contact
-
-For questions, suggestions, or collaboration opportunities:
-- Open an issue on GitHub
-- Email: your.email@example.com
-- LinkedIn: [Connect with me](https://linkedin.com/in/your-profile)
 
 ---
 
