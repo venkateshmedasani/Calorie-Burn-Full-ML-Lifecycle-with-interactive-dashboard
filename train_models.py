@@ -1,6 +1,6 @@
 import pandas as pd
 import joblib
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from xgboost import XGBRegressor
 import lightgbm as lgb
@@ -13,11 +13,11 @@ df = pd.read_csv('user_data_with_modified_temperature.csv')
 df.drop(columns=['User_ID'], axis=1, inplace=True)
 df['Gender'] = df['Gender'].apply(lambda x: 1 if x == 'Male' else 0)
 
-# Features and target (exactly as notebook)
+# Features and target
 X = df.drop(columns=['Calories'], axis=1)
 y = df['Calories']
 
-# THREE-way split (exactly as notebook cell #16)
+# THREE-way split
 X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
 
@@ -29,7 +29,6 @@ X_test = scaler.transform(X_test)
 # Create models directory
 os.makedirs('models', exist_ok=True)
 
-# Train models (exactly as notebook cell #39)
 print("Training Linear Regression...")
 linear_model = LinearRegression()
 linear_model.fit(X_train, y_train)
@@ -54,6 +53,17 @@ print("Training LightGBM...")
 lgb_model = lgb.LGBMRegressor(random_state=42)
 lgb_model.fit(X_train, y_train)
 joblib.dump(lgb_model, 'models/lightgbm.pkl')
+
+# NEW: Ridge and Lasso
+print("Training Ridge Regression...")
+ridge_model = Ridge(random_state=42)
+ridge_model.fit(X_train, y_train)
+joblib.dump(ridge_model, 'models/ridge.pkl')
+
+print("Training Lasso Regression...")
+lasso_model = Lasso(random_state=42)
+lasso_model.fit(X_train, y_train)
+joblib.dump(lasso_model, 'models/lasso.pkl')
 
 # Save scaler
 joblib.dump(scaler, 'models/scaler.pkl')
