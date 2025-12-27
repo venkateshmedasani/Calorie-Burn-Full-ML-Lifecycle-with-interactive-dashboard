@@ -2,8 +2,8 @@ import pandas as pd
 import joblib
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from xgboost import XGBRegressor
-import lightgbm as lgb
+# from xgboost import XGBRegressor
+# import lightgbm as lgb
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import os
@@ -44,15 +44,15 @@ gb_model = GradientBoostingRegressor(random_state=42)
 gb_model.fit(X_train, y_train)
 joblib.dump(gb_model, 'models/gradient_boosting.pkl')
 
-print("Training XGBoost...")
-xgb_model = XGBRegressor(random_state=42)
-xgb_model.fit(X_train, y_train)
-joblib.dump(xgb_model, 'models/xgboost.pkl')
+# print("Training XGBoost...")
+# xgb_model = XGBRegressor(random_state=42)
+# xgb_model.fit(X_train, y_train)
+# joblib.dump(xgb_model, 'models/xgboost.pkl')
 
-print("Training LightGBM...")
-lgb_model = lgb.LGBMRegressor(random_state=42)
-lgb_model.fit(X_train, y_train)
-joblib.dump(lgb_model, 'models/lightgbm.pkl')
+# print("Training LightGBM...")
+# lgb_model = lgb.LGBMRegressor(random_state=42)
+# lgb_model.fit(X_train, y_train)
+# joblib.dump(lgb_model, 'models/lightgbm.pkl')
 
 # NEW: Ridge and Lasso
 print("Training Ridge Regression...")
